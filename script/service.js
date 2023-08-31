@@ -3,12 +3,15 @@
 const blockProducts = document.querySelector(".product__container");
 
 const getProducts = async () => {
-  const products = await fetch("http://localhost:3030/service", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const products = await fetch(
+    "https://clothes-shop-cz8judgsz-urzhumtsew10.vercel.app/service",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   return await products.json();
 };
 
@@ -52,13 +55,16 @@ filterSeasonalBtn.forEach((elem) => {
 });
 
 const sendFilterData = async (data) => {
-  const products = await fetch("http://localhost:3030/sort", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const products = await fetch(
+    "https://clothes-shop-cz8judgsz-urzhumtsew10.vercel.app/sort",
+    {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   return await products.json();
 };
 
