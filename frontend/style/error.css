@@ -1,0 +1,30 @@
+body {
+  width: 99%;
+  height: 97.6vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    to bottom,
+    rgb(255, 35, 35),
+    75%,
+    rgb(255, 95, 95)
+  );
+}
+h1 {
+  display: contents;
+  color: #fff;
+  font-size: 100px;
+}
+p {
+  color: #fff;
+  font-size: 28px;
+}
+.come-back {
+  position: fixed;
+  top: 40px;
+  left: 50px;
+  transform: rotate(-90deg);
+  width: 50px;
+}
