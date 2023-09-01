@@ -92,18 +92,38 @@
       <section class="product">
         <div class="product__blockFilter container">
           <div class="loadingBlock"></div>
-          <div class="blockFilter__category">
-            <button class="category__item active-category">All</button>
-            <button class="category__item">T-shirt</button>
-            <button class="category__item">Short</button>
-            <button class="category__item">Sneakers</button>
-            <button class="category__item">Sweater</button>
-            <button class="category__item">Trousers</button>
-            <button class="category__item">Flip flops</button>
+          <div
+            data-id="category"
+            class="blockFilter__category mobile-btn mobile-filter"
+          >
+            <img
+              data-id="category"
+              class="blockFilter__img btn-arrow"
+              src="./img/icon-arrow.svg"
+            />
+            <div class="contentFilter">
+              <div class="loadingBlock"></div>
+              <button class="category__item active-category">All</button>
+              <button class="category__item">T-shirt</button>
+              <button class="category__item">Short</button>
+              <button class="category__item">Sneakers</button>
+              <button class="category__item">Sweater</button>
+              <button class="category__item">Trousers</button>
+              <button class="category__item">Flip flops</button>
+            </div>
           </div>
-          <div class="blockFilter__brand container-filter">
+          <div
+            data-id="brand"
+            class="blockFilter__brand container-filter mobile-filter"
+          >
+            <img
+              data-id="brand"
+              class="blockFilter__img"
+              src="./img/icon-arrow.svg"
+            />
             <h3 class="brand__title filter-title">Brand</h3>
-            <form class="brand__form filter-form">
+            <form class="brand__form filter-form contentFilter">
+              <div class="loadingBlock brandloading"></div>
               <div>
                 <input
                   data-category="brand"
@@ -208,9 +228,18 @@
               </div>
             </form>
           </div>
-          <div class="blockFilter__for container-filter">
+          <div
+            data-id="for"
+            class="blockFilter__for container-filter mobile-filter"
+          >
+            <img
+              data-id="for"
+              class="blockFilter__img"
+              src="./img/icon-arrow.svg"
+            />
             <h3 class="for__title filter-title">For</h3>
-            <form class="for__form filter-form">
+            <form class="for__form filter-form contentFilter">
+              <div class="loadingBlock"></div>
               <div>
                 <input
                   data-category="for"
@@ -245,9 +274,18 @@
               </div>
             </form>
           </div>
-          <div class="blockFilter__size container-filter">
+          <div
+            data-id="size"
+            class="blockFilter__size container-filter mobile-filter"
+          >
+            <img
+              data-id="size"
+              class="blockFilter__img"
+              src="./img/icon-arrow.svg"
+            />
             <h3 class="size__title filter-title">Size</h3>
-            <form class="size__form filter-form">
+            <form class="size__form filter-form contentFilter">
+              <div class="loadingBlock"></div>
               <div>
                 <input
                   data-category="size"
@@ -372,5 +410,6 @@
       </div>
     </footer>
     <script src="./script/service.js" type="module"></script>
+    <script src="./script/index.js"></script>
   </body>
 </html>

@@ -3,15 +3,12 @@
 const blockProducts = document.querySelector(".product__container");
 
 const getProducts = async () => {
-  const products = await fetch(
-    "https://clothes-shop-cz8judgsz-urzhumtsew10.vercel.app/service",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const products = await fetch("http://localhost:3030/service", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
   return await products.json();
 };
 
@@ -55,16 +52,13 @@ filterSeasonalBtn.forEach((elem) => {
 });
 
 const sendFilterData = async (data) => {
-  const products = await fetch(
-    "https://clothes-shop-cz8judgsz-urzhumtsew10.vercel.app/sort",
-    {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const products = await fetch("http://localhost:3030/sort", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
   return await products.json();
 };
 
@@ -82,9 +76,11 @@ filterBlock.addEventListener("click", (e) => {
     });
     e.target.classList.add("active-category");
   }
-  const loadingBlock = document.querySelector(".loadingBlock");
+  const loadingBlock = document.querySelectorAll(".loadingBlock");
   if (e.target.nodeName === "INPUT" || e.target.nodeName === "BUTTON") {
-    loadingBlock.classList.add("active-loading");
+    loadingBlock.forEach((loading) => {
+      loading.classList.add("active-loading");
+    });
     filterCategoryBtn.forEach((btn) => {
       if (btn.classList.contains("active-category")) {
         filter.category = btn.innerText;
@@ -110,7 +106,9 @@ filterBlock.addEventListener("click", (e) => {
     });
 
     sendFilterData(filter).then((products) => {
-      loadingBlock.classList.remove("active-loading");
+      loadingBlock.forEach((loading) => {
+        loading.classList.remove("active-loading");
+      });
 
       blockProducts.innerHTML = "";
 
@@ -181,4 +179,22 @@ blockProducts.addEventListener("click", (e) => {
       });
     });
   }
+});
+
+// adeptive filter
+
+const filterArrow = document.querySelectorAll(".blockFilter__img");
+const filterBlocks = document.querySelectorAll(".mobile-filter");
+
+filterArrow.forEach((arrow) => {
+  arrow.addEventListener("click", (e) => {
+    filterBlocks.forEach((block) => {
+      if (block.dataset.id === arrow.dataset.id) {
+        block.classList.toggle("active-filter-block");
+        arrow.classList.toggle("active-filter-arrow");
+      } else {
+        // arrow.classList.toggle("inactive-filter-arrow");
+      }
+    });
+  });
 });
