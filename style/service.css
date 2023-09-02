@@ -624,7 +624,8 @@ a {
 }
 @media (max-width: 900px) {
   .imgProduct {
-    height: 55vw;
+    width: 60vw;
+    height: 65vw;
   }
   .aboutProduct__arrow {
     top: 80px;
@@ -654,16 +655,18 @@ a {
     height: 195vw;
   }
   .imgProduct {
-    height: 70vw;
+    width: 60vw;
+    height: 65vw;
   }
   .aboutProduct__img {
-    margin-top: 30vw;
+    margin-top: 10vw;
   }
   .aboutProduct__actions {
     margin-top: 10vw;
   }
   .description__categoryProduct {
-    font-size: 5.22vw;
+    font-size: 7.22vw;
+    font-weight: 600;
   }
   .actions__buy,
   .actions__quickOrder {
@@ -849,11 +852,15 @@ a {
   }
 }
 @media (max-width: 450px) {
+  .imgProduct {
+    width: 75vw;
+    height: 80vw;
+  }
   .aboutProduct {
-    height: 215vw;
+    height: 230vw;
   }
   .aboutProduct__img {
-    margin-top: 40vw;
+    margin-top: 45vw;
   }
   .counterProduct__total {
     margin: 0 6.2vw 0 6.2vw;
