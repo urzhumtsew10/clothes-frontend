@@ -22,10 +22,10 @@ getProducts().then((products) => {
       `<div class="product__card card">
              <img id="${products[i]._id}" class="card__img card" src="./img/${products[i].img}"/>
              <div class="card__params">
-               <h3 id="${products[i]._id}" class="params__title card">${products[i].category} ${products[i].brand}</h3>
+               <h2 id="${products[i]._id}" class="params__title card">${products[i].category} ${products[i].brand}</h2>
                <div class="params__cost flex">
                  <p class="cost__price card">${products[i].price}<span class="price__span">$</span></p>
-                 <button class="cost__btn">Buy</button>
+                 <button id="${products[i]._id}" class="cost__btn">Buy</button>
                </div>
              </div>
         </div>`
@@ -124,10 +124,10 @@ filterBlock.addEventListener("click", (e) => {
           `<div class="product__card card">
              <img id="${product._id}" class="card__img card" src="./img/${product.img}" alt="tshirt" />
              <div class="card__params">
-               <h3 id="${product._id}" class="params__title card">${product.category} ${product.brand}</h3>
+               <h2 id="${product._id}" class="params__title card">${product.category} ${product.brand}</h2>
                <div class="params__cost flex">
                  <p class="cost__price card">${product.price}<span class="price__span">$</span></p>
-                 <button class="cost__btn">Buy</button>
+                 <button id="${product._id}" class="cost__btn">Buy</button>
                </div>
              </div>
         </div>`
@@ -203,4 +203,32 @@ filterArrow.forEach((arrow) => {
       }
     });
   });
+});
+
+// add product to cart
+
+const addToStorageCart = (value) => {
+  const productsArray = JSON.parse(localStorage.getItem("cartProducts"));
+  const hasProduct = productsArray.filter(
+    (product) => product._id === value._id
+  )[0];
+  if (hasProduct) {
+    hasProduct.count += 1;
+  } else {
+    productsArray.push({ ...value, count: 1 });
+  }
+  localStorage.setItem("cartProducts", JSON.stringify(productsArray));
+};
+
+blockProducts.addEventListener("click", (e) => {
+  if (e.target.classList.contains("cost__btn")) {
+    const productId = e.target.id;
+
+    getProducts().then((products) => {
+      const currentProduct = products.filter(
+        (product) => product._id === productId
+      )[0];
+      addToStorageCart(currentProduct);
+    });
+  }
 });
