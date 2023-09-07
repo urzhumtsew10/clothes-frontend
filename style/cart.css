@@ -155,6 +155,165 @@ input::-webkit-inner-spin-button {
   right: 50px;
   width: 50px;
 }
+.windowCart__orderForm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 5px;
+  display: none;
+}
+.orderform__btn {
+  width: 135px;
+  height: 55px;
+  border: none;
+  border-radius: 5px;
+
+  font-size: 27px;
+}
+.orderForm__apply {
+  position: absolute;
+  bottom: 25px;
+  left: 70px;
+
+  background-color: rgb(191, 255, 191);
+  color: rgb(0, 108, 0);
+}
+.orderForm__apply:hover {
+  transition: 0.4s;
+
+  background-color: rgb(0, 161, 0);
+  color: rgb(191, 255, 191);
+}
+.orderForm__cancel {
+  position: absolute;
+  bottom: 25px;
+  right: 70px;
+
+  background-color: #ffbbbb;
+  color: #860000;
+}
+.orderForm__cancel:hover {
+  transition: 0.4s;
+
+  background-color: #d81f1f;
+  color: #ffbbbb;
+}
+
+.active-order-form {
+  display: block;
+}
+.orderForm__title {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  font-size: 30px;
+  font-weight: 600;
+  font-family: "Roboto";
+}
+.orderForm__line {
+  position: absolute;
+  top: 55px;
+  width: 100%;
+  height: 1px;
+  background-color: #000;
+}
+.orderForm__form {
+  position: absolute;
+  top: 56px;
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.form__box {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.form__input {
+  padding-left: 10px;
+  width: 350px;
+  height: 35px;
+  border: 1px solid #b4b4b4;
+  border-radius: 5px;
+}
+.form__input:focus {
+  border: 2px solid #000;
+}
+.form__label {
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  color: #474747;
+}
+.form__select {
+  width: 350px;
+  height: 45px;
+  border: 1px solid #b4b4b4;
+  border-radius: 5px;
+}
+.form__payment {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 65px;
+}
+.payment__label {
+  font-size: 22px;
+  font-family: "Inter";
+}
+.numberCard {
+  display: none;
+}
+.active-numberCard-form {
+  display: flex;
+  flex-direction: column;
+}
+.error-input {
+  color: #d81f1f;
+  position: absolute;
+  top: 20px;
+  right: 0;
+  display: none;
+}
+.error-payment {
+  top: 8px;
+}
+.active-error {
+  display: block;
+}
+.orderForm__gratefulBlock {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to bottom, rgb(61, 212, 61), rgb(2, 161, 2));
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+.active-gratefulBlock {
+  display: flex;
+}
+.gratefulBlock__img {
+  width: 200px;
+}
+.gratefulBlock__text {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 35px;
+  font-family: "Inter";
+  color: #0a2c09;
+}
 @media (max-width: 1400px) {
   .windowCart__contentCart {
     width: 71.23vw;
@@ -188,6 +347,27 @@ input::-webkit-inner-spin-button {
   }
 }
 @media (max-width: 640px) {
+  .gratefulBlock__img {
+    width: 160px;
+  }
+  .gratefulBlock__text {
+    margin-top: 15px;
+    font-size: 26px;
+  }
+  .orderForm__apply {
+    left: 25px;
+  }
+  .orderForm__cancel {
+    right: 25px;
+  }
+  .form__payment {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .orderForm__form {
+    height: 75%;
+    overflow-y: scroll;
+  }
   .products__product {
     height: 150px;
   }
@@ -224,6 +404,16 @@ input::-webkit-inner-spin-button {
   }
 }
 @media (max-width: 550px) {
+  .orderForm__form {
+    height: 330px;
+    justify-content: flex-start;
+  }
+  .form__input {
+    width: 300px;
+  }
+  .form__select {
+    width: 300px;
+  }
   .contentCart__blockInfo {
     height: 66px;
   }
@@ -257,6 +447,29 @@ input::-webkit-inner-spin-button {
   }
 }
 @media (max-width: 440px) {
+  .gratefulBlock__img {
+    width: 110px;
+  }
+  .gratefulBlock__text {
+    font-size: 18px;
+  }
+  .orderform__btn {
+    width: 90px;
+    height: 45px;
+    font-size: 25px;
+  }
+  .orderForm__apply {
+    left: 10px;
+  }
+  .orderForm__cancel {
+    right: 10px;
+  }
+  .form__input {
+    width: 65vw;
+  }
+  .form__select {
+    width: 65vw;
+  }
   .blockInfo__btn {
     margin-left: 5vw;
     width: 23.5vw;

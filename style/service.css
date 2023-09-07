@@ -841,10 +841,10 @@ a {
 }
 @media (max-width: 450px) {
   .aboutProduct {
-    height: 230vw;
+    height: 260vw;
   }
   .aboutProduct__img {
-    margin-top: 45vw;
+    margin-top: 35vw;
     width: 85vw;
   }
   .counterProduct__total {

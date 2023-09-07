@@ -38,12 +38,120 @@
             total: <span class="total__price"></span>
           </p>
         </div>
+        <div class="windowCart__orderForm">
+          <h3 class="orderForm__title">Order Form</h3>
+          <div class="orderForm__line"></div>
+          <form class="orderForm__form">
+            <div class="form__box">
+              <span class="error-name error-input">enter your name</span>
+              <label class="form__label" for="name">Name</label>
+              <input
+                name="name"
+                autocomplete="off"
+                class="form__input"
+                id="name"
+                type="text"
+              />
+            </div>
+            <div class="form__box">
+              <span class="error-surname error-input">enter your surname</span>
+              <label class="form__label" for="surname">Surname</label>
+              <input
+                autocomplete="off"
+                name="surname"
+                class="form__input"
+                id="surname"
+                type="text"
+              />
+            </div>
+            <div class="form__box">
+              <label class="form__label" for="email">Email</label>
+              <span class="error-email error-input"></span>
+              <input
+                autocomplete="off"
+                name="email"
+                class="form__input"
+                id="email"
+                type="text"
+              />
+            </div>
+            <div class="form__box">
+              <label class="form__label" for="post-office">Post office</label>
+              <select
+                name="post-office"
+                class="form__select"
+                name="post-office"
+                id="post-office"
+              >
+                <option value="street Nezhenskaya 37, post office №129">
+                  street Nezhenskaya 37, post office №129
+                </option>
+                <option value="street Uspenskaya 7, post office №30">
+                  street Uspenskaya 7, post office №30
+                </option>
+                <option value="street Fontanskaya 14a, post office №63">
+                  street Fontanskaya 14a, post office №63
+                </option>
+              </select>
+            </div>
+            <div class="form__box">
+              <span class="error-payment error-input"
+                >choose one of the options</span
+              >
+              <div class="form__payment">
+                <label class="payment__label" for="cash">
+                  <input
+                    class="payment__input"
+                    value="cash"
+                    id="cash"
+                    name="payment"
+                    type="radio"
+                  />
+                  cash payment
+                </label>
+                <label class="payment__label" for="card">
+                  <input
+                    class="payment__input"
+                    id="card"
+                    value="card"
+                    name="payment"
+                    type="radio"
+                  />
+                  card payment
+                </label>
+              </div>
+            </div>
+            <div class="form__box numberCard">
+              <span class="error-card error-input">number card is invalid</span>
+              <label class="form__label" for="number-card">
+                Your number card
+              </label>
+              <input
+                id="number-card"
+                name="numberCard"
+                value=""
+                class="form__input"
+                type="text"
+                placeholder="number card has 16 numbers..."
+              />
+            </div>
+          </form>
+          <button class="orderForm__apply orderform__btn">Send</button>
+          <button class="orderForm__cancel orderform__btn">Cancel</button>
+          <div class="orderForm__gratefulBlock">
+            <img class="gratefulBlock__img" src="./img/emoji-smile.svg" />
+            <h3 class="gratefulBlock__text">
+              Thank you for ordering. <br />
+              wait for an email
+            </h3>
+          </div>
+        </div>
       </div>
     </div>
     <div class="aboutProduct">
       <img class="aboutProduct__arrow" src="./img/arrow.png" alt="arrow" />
       <div class="aboutProduct__img">
-        <img class="imgProduct" src="" />
+        <img class="imgProduct" />
       </div>
       <div class="aboutProduct__description">
         <h2 class="description__categoryProduct"></h2>
