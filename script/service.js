@@ -3,15 +3,12 @@
 const blockProducts = document.querySelector(".product__container");
 
 const getProducts = async () => {
-  const products = await fetch(
-    "https://clothes-shop-hpfxb7z2w-urzhumtsew10.vercel.app/service",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const products = await fetch("https://clothes-api-eta.vercel.app/service", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
   return await products.json();
 };
 
@@ -43,29 +40,9 @@ const inputBrand = document.querySelectorAll("[data-category='brand']");
 const inputFor = document.querySelectorAll("[data-category='for']");
 const inputSize = document.querySelectorAll("[data-category='size']");
 
-const updateBlockProducts = (products) => {
-  blockProducts.innerHTML = "";
-
-  products.forEach((product) => {
-    blockProducts.insertAdjacentHTML(
-      "beforeend",
-      `<div class="product__card card">
-             <img id="${product._id}" class="card__img card" src="./img/${product.img}" alt="tshirt" />
-             <div class="card__params">
-               <h2 id="${product._id}" class="params__title card">${product.category} ${product.brand}</h2>
-               <div class="params__cost flex">
-                 <p class="cost__price card">${product.price}<span class="price__span">$</span></p>
-                 <button id="${product._id}" class="cost__btn">Buy</button>
-               </div>
-             </div>
-        </div>`
-    );
-  });
-};
-
 const sendFilterData = async (data, nameFilter) => {
   const products = await fetch(
-    `https://vercel.com/urzhumtsew10/clothes-shop-api/${nameFilter}`,
+    `https://clothes-api-eta.vercel.app/${nameFilter}`,
     {
       method: "POST",
       body: JSON.stringify(data),
@@ -100,8 +77,24 @@ filterSeasonalBtn.forEach((elem) => {
         seasonalFilter = ["Flip flops", "Sneakers"];
         break;
     }
-    sendFilterData(seasonalFilter, "seasonal-clothes").then((products) => {
-      updateBlockProducts(products);
+    sendFilterData(seasonalFilter, "sort").then((products) => {
+      blockProducts.innerHTML = "";
+
+      products.forEach((product) => {
+        blockProducts.insertAdjacentHTML(
+          "beforeend",
+          `<div class="product__card card">
+             <img id="${product._id}" class="card__img card" src="./img/${product.img}" alt="tshirt" />
+             <div class="card__params">
+               <h2 id="${product._id}" class="params__title card">${product.category} ${product.brand}</h2>
+               <div class="params__cost flex">
+                 <p class="cost__price card">${product.price}<span class="price__span">$</span></p>
+                 <button id="${product._id}" class="cost__btn">Buy</button>
+               </div>
+             </div>
+        </div>`
+        );
+      });
     });
   });
 });
@@ -154,7 +147,23 @@ filterBlock.addEventListener("click", (e) => {
         loading.classList.remove("active-loading");
       });
 
-      updateBlockProducts(products);
+      blockProducts.innerHTML = "";
+
+      products.forEach((product) => {
+        blockProducts.insertAdjacentHTML(
+          "beforeend",
+          `<div class="product__card card">
+             <img id="${product._id}" class="card__img card" src="./img/${product.img}" alt="tshirt" />
+             <div class="card__params">
+               <h2 id="${product._id}" class="params__title card">${product.category} ${product.brand}</h2>
+               <div class="params__cost flex">
+                 <p class="cost__price card">${product.price}<span class="price__span">$</span></p>
+                 <button id="${product._id}" class="cost__btn">Buy</button>
+               </div>
+             </div>
+        </div>`
+        );
+      });
     });
   }
 });
