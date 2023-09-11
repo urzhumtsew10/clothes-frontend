@@ -64,13 +64,16 @@ const updateBlockProducts = (products) => {
 };
 
 const sendFilterData = async (data, nameFilter) => {
-  const products = await fetch(`http://localhost:3030/${nameFilter}`, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const products = await fetch(
+    `https://vercel.com/urzhumtsew10/clothes-shop-api/${nameFilter}`,
+    {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   return await products.json();
 };
 
