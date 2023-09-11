@@ -43,6 +43,37 @@ const inputBrand = document.querySelectorAll("[data-category='brand']");
 const inputFor = document.querySelectorAll("[data-category='for']");
 const inputSize = document.querySelectorAll("[data-category='size']");
 
+const updateBlockProducts = (products) => {
+  blockProducts.innerHTML = "";
+
+  products.forEach((product) => {
+    blockProducts.insertAdjacentHTML(
+      "beforeend",
+      `<div class="product__card card">
+             <img id="${product._id}" class="card__img card" src="./img/${product.img}" alt="tshirt" />
+             <div class="card__params">
+               <h2 id="${product._id}" class="params__title card">${product.category} ${product.brand}</h2>
+               <div class="params__cost flex">
+                 <p class="cost__price card">${product.price}<span class="price__span">$</span></p>
+                 <button id="${product._id}" class="cost__btn">Buy</button>
+               </div>
+             </div>
+        </div>`
+    );
+  });
+};
+
+const sendFilterData = async (data, nameFilter) => {
+  const products = await fetch(`http://localhost:3030/${nameFilter}`, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return await products.json();
+};
+
 filterSeasonalBtn.forEach((elem) => {
   elem.addEventListener("click", (e) => {
     const blockProductsCoordinates =
@@ -51,22 +82,26 @@ filterSeasonalBtn.forEach((elem) => {
       top: blockProductsCoordinates,
       behavior: "smooth",
     });
+    let seasonalFilter;
+    switch (e.target.id) {
+      case "summer":
+        seasonalFilter = ["T-shirt", "Short"];
+        break;
+      case "winter":
+        seasonalFilter = ["Sweater", "Trousers"];
+        break;
+      case "headdress":
+        seasonalFilter = ["Cap", "Hat"];
+        break;
+      case "shoes":
+        seasonalFilter = ["Flip flops", "Sneakers"];
+        break;
+    }
+    sendFilterData(seasonalFilter, "seasonal-clothes").then((products) => {
+      updateBlockProducts(products);
+    });
   });
 });
-
-const sendFilterData = async (data) => {
-  const products = await fetch(
-    "https://clothes-shop-hpfxb7z2w-urzhumtsew10.vercel.app/sort",
-    {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  return await products.json();
-};
 
 filterBlock.addEventListener("click", (e) => {
   const filter = {
@@ -111,28 +146,12 @@ filterBlock.addEventListener("click", (e) => {
       }
     });
 
-    sendFilterData(filter).then((products) => {
+    sendFilterData(filter, "sort").then((products) => {
       loadingBlock.forEach((loading) => {
         loading.classList.remove("active-loading");
       });
 
-      blockProducts.innerHTML = "";
-
-      products.forEach((product) => {
-        blockProducts.insertAdjacentHTML(
-          "beforeend",
-          `<div class="product__card card">
-             <img id="${product._id}" class="card__img card" src="./img/${product.img}" alt="tshirt" />
-             <div class="card__params">
-               <h2 id="${product._id}" class="params__title card">${product.category} ${product.brand}</h2>
-               <div class="params__cost flex">
-                 <p class="cost__price card">${product.price}<span class="price__span">$</span></p>
-                 <button id="${product._id}" class="cost__btn">Buy</button>
-               </div>
-             </div>
-        </div>`
-        );
-      });
+      updateBlockProducts(products);
     });
   }
 });
