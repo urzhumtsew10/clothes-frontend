@@ -38,7 +38,7 @@ const checkUserData = async (data, url) => {
 };
 
 const addNewUser = async (data) => {
-  const answer = await fetch(`https://clothes-api-eta.vercel.app/add-user`, {
+  const answer = await fetch(`http://localhost:3030/add-user`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
