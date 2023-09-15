@@ -6,6 +6,7 @@
     <title>Clothes Store | Service</title>
     <link rel="stylesheet" href="./style/service.css" />
     <link rel="stylesheet" href="./style/cart.css" />
+    <link rel="stylesheet" href="./style/registration.css" />
   </head>
   <body>
     <header class="navigation">
@@ -23,9 +24,66 @@
           <li><a class="list__nav-item" href="#">Contact us</a></li>
         </ul>
       </div>
+      <img class="header__account header-icon" src="./img/icon-user.svg" />
       <img class="header__log header-icon" src="./img/log-in.svg" />
-      <img class="header__cart header-icon" src="./img/cart.svg" />
+      <div class="header__cartDiv header-icon">
+        <div class="cart__circle"><p class="circle__total"></p></div>
+        <img class="header__cart" src="./img/cart.svg" />
+      </div>
+      </div>
     </header>
+    <div class="windowRegistration">
+      <div class="windowRegistration__contentRegistr">
+        <h2 class="contentRegistr__title">Registration</h2>
+        <div class="contentRegistr__line"></div>
+        <img class="contentRegistr__imgClose" src="./img/icon-close.svg" />
+        <form class="contentRegistr__formReg">
+          <label id="name" class="formReg__label">
+            <input name="name" class="formReg__input input-name" type="text" />
+            <span class="formReg__span span-name">Name</span>
+            <p id="error-name" class="errorMsg"></p>
+          </label>
+          <label id="password" class="formReg__label">
+            <input
+              name="password"
+              class="formReg__input input-password"
+              type="password"
+            />
+            <span class="formReg__span span-password">Password</span>
+            <p id="error-password" class="errorMsg"></p>
+          </label>
+        </form>
+        <form class="contentRegistr__formSign active-form">
+          <label id="_name" class="formReg__label">
+            <input name="name" class="formReg__input input-name" type="text" />
+            <span class="formReg__span span-name">Name</span>
+            <p id="error_name" class="errorMsg"></p>
+          </label>
+          <label id="_email" class="formReg__label">
+            <input
+              name="email"
+              class="formReg__input input-email"
+              type="text"
+            />
+            <span class="formReg__span span-name">Email</span>
+            <p id="error_email" class="errorMsg"></p>
+          </label>
+          <label id="_password" class="formReg__label">
+            <input
+              name="password"
+              class="formReg__input input-password"
+              type="password"
+            />
+            <span class="formReg__span span-password">Password</span>
+            <p id="error_password" class="errorMsg"></p>
+          </label>
+        </form>
+        <div class="contentRegistr__actions">
+          <button class="actions__signOn">Sign on</button>
+          <button class="actions__logIn">Log in</button>
+        </div>
+      </div>
+    </div>
     <div class="windowCart">
       <div class="windowCart__contentCart">
         <img class="contentCart__imgClose" src="./img/icon-close.svg" />
@@ -537,8 +595,9 @@
         </div>
       </div>
     </footer>
-    <script src="./script/service.js"></script>
     <script src="./script/index.js"></script>
+    <script src="./script/service.js"></script>
     <script src="./script/cart.js"></script>
+    <script src="./script/registration.js"></script>
   </body>
 </html>

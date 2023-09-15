@@ -90,6 +90,7 @@ windowCart.addEventListener("click", (e) => {
     e.target.classList.contains("contentCart__imgClose") ||
     e.target.classList.contains("windowCart")
   ) {
+    calculateQuantityProducts();
     windowCart.classList.remove("active_cart");
     contentCart.classList.remove("active-content-cart");
     document.body.style.overflow = "inherit";

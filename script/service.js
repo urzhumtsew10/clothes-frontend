@@ -1,5 +1,21 @@
 // output products
 
+// check token
+
+const checkUserToken = () => {
+  const iconLog = document.querySelector(".header__log");
+  const iconAccount = document.querySelector(".header__account");
+
+  const isToken = localStorage.getItem("token");
+  if (isToken === null) {
+    iconLog.classList.add("active-icon");
+  } else {
+    iconAccount.classList.add("active-icon");
+  }
+};
+
+checkUserToken();
+
 const blockProducts = document.querySelector(".product__container");
 
 const getProducts = async () => {
@@ -260,6 +276,7 @@ blockProducts.addEventListener("click", (e) => {
         (product) => product._id === productId
       )[0];
       addToStorageCart(currentProduct);
+      calculateQuantityProducts();
     });
   }
 });

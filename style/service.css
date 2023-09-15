@@ -14,18 +14,56 @@
 .navigation {
   display: flex;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  background-color: #fff;
 }
 .header__cart {
   cursor: pointer;
+  width: 45px;
+  height: 45px;
+}
+.header__cartDiv {
+  position: relative;
   margin-right: 75px;
   width: 45px;
   height: 45px;
+}
+.cart__circle {
+  cursor: pointer;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #f55474;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.circle__total {
+  cursor: pointer;
+  font-size: 13px;
 }
 .header__log {
   cursor: pointer;
   margin-right: 20px;
   width: 55px;
   height: 45px;
+  display: none;
+}
+.header__account {
+  cursor: pointer;
+  margin-right: 20px;
+  width: 42px;
+  display: none;
+}
+.active-icon {
+  display: block;
 }
 .header-icon:hover {
   transform: scale(1.1);
@@ -94,7 +132,7 @@ li:nth-of-type(2) .list__nav-item {
   color: #fff;
 }
 .seasonalClothing {
-  margin-top: 2vw;
+  margin-top: 5vw;
 }
 .seasonalClothing__container {
   display: grid;
@@ -591,10 +629,13 @@ a {
   .header-icon {
     z-index: 3;
   }
-  .header__cart {
+  .header__cartDiv {
     margin-right: 6.28vw;
   }
   .header__log {
+    margin-right: 1.94vw;
+  }
+  .header__account {
     margin-right: 1.94vw;
   }
   .list__nav-item {
@@ -664,7 +705,12 @@ a {
     position: fixed;
     left: 81vw;
   }
-  .header__cart {
+  .header__account {
+    position: fixed;
+    left: 81vw;
+  }
+  .header__cartDiv {
+    z-index: 2;
     position: fixed;
     left: 91vw;
   }
@@ -898,14 +944,27 @@ a {
     grid-template-columns: repeat(auto-fit, 77.78vw);
   }
   .header__cart {
+    width: 35px;
+    height: 35px;
+  }
+  .header__cartDiv {
+    left: 86vw;
     margin-right: 2.2vw;
     width: 35px;
     height: 35px;
-    left: 86vw;
+  }
+  .cart__circle {
+    width: 18px;
+    height: 18px;
   }
   .header__log {
     width: 45px;
     height: 35px;
+    left: 74vw;
+    margin: 0;
+  }
+  .header__account {
+    width: 33px;
     left: 74vw;
     margin: 0;
   }
