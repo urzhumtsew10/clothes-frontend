@@ -10,24 +10,8 @@ const checkLabel = (labelId) => {
   });
 };
 
-const parseJwt = (token) => {
-  var base64Url = token.split(".")[1];
-  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-  var jsonPayload = decodeURIComponent(
-    window
-      .atob(base64)
-      .split("")
-      .map(function (c) {
-        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-      })
-      .join("")
-  );
-
-  return JSON.parse(jsonPayload);
-};
-
 const checkUserData = async (data, url) => {
-  const answer = await fetch(`https://clothes-api-eta.vercel.app/${url}`, {
+  const answer = await fetch(`http://localhost:3030/${url}`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -168,6 +152,7 @@ windowRegistration.addEventListener("click", (e) => {
       const entries = formData.entries();
       const userData = Object.fromEntries(entries);
 
+      userData.role = "user";
       // validation Name
       if (userData.name.length < 4) {
         labelNameSign.classList.add("error");

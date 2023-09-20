@@ -14,6 +14,17 @@ const calculateSumPrice = () => {
   total.innerText = `${sum}$`;
 };
 
+const sendNewOrder = async (data) => {
+  const answer = await fetch(`http://localhost:3030/new-order`, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return await answer.json();
+};
+
 const renderProductsInCart = () => {
   const cartBlockProducts = document.querySelector(".contentCart__products");
   const productsArray = JSON.parse(localStorage.getItem("cartProducts"));
@@ -111,6 +122,7 @@ windowCart.addEventListener("click", (e) => {
       currentProduct.count -= 1;
       localStorage.setItem("cartProducts", JSON.stringify(productsArray));
       renderProductsInCart();
+      calculateQuantityProducts();
     }
   }
   if (e.target.classList.contains("productCounter__increment")) {
@@ -122,11 +134,23 @@ windowCart.addEventListener("click", (e) => {
       currentProduct.count += 1;
       localStorage.setItem("cartProducts", JSON.stringify(productsArray));
       renderProductsInCart();
+      calculateQuantityProducts();
     }
   }
   if (e.target.classList.contains("blockInfo__btn")) {
+    const windowRegistration = document.querySelector(".windowRegistration");
+    const contentReg = document.querySelector(
+      ".windowRegistration__contentRegistr"
+    );
     if (getProductsFromStorage().length !== 0) {
-      orderForm.classList.toggle("active-order-form");
+      if (localStorage.getItem("token") !== null) {
+        orderForm.classList.toggle("active-order-form");
+      } else {
+        windowCart.classList.remove("active_cart");
+        contentCart.classList.remove("active-content-cart");
+        windowRegistration.classList.add("active-windowRegistr");
+        contentReg.classList.add("active-contentRegistr");
+      }
     }
   }
   if (e.target.classList.contains("orderForm__cancel")) {
@@ -191,11 +215,15 @@ windowCart.addEventListener("click", (e) => {
       !errorCard.classList.contains("active-error");
 
     if (isValidForm) {
+      const tokenData = parseJwt(localStorage.getItem("token"));
       const orderData = {
+        userName: tokenData.name,
         clientData: data,
         clientOrder: getProductsFromStorage(),
         total: total.innerText,
       };
+
+      sendNewOrder(orderData);
 
       gratefulBlock.classList.add("active-gratefulBlock");
 
@@ -206,6 +234,7 @@ windowCart.addEventListener("click", (e) => {
         contentCart.classList.remove("active-content-cart");
         document.body.style.overflow = "inherit";
         formElement.reset();
+        calculateQuantityProducts();
       }, 5000);
 
       localStorage.setItem("cartProducts", JSON.stringify([]));

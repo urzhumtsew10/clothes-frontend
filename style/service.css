@@ -17,7 +17,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 4;
   width: 100%;
   background-color: #fff;
 }
@@ -460,6 +460,7 @@ a {
   display: flex;
 }
 .aboutProduct {
+  margin-top: 70px;
   position: relative;
   display: flex;
   background-color: #ffeaea;

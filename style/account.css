@@ -1,0 +1,186 @@
+@import url("./reset.css");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&display=swap");
+
+* {
+  font-family: "Roboto", "Inter";
+}
+.windowAccount {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  z-index: -1;
+}
+.active-account {
+  opacity: 1;
+  z-index: 4;
+}
+.windowAccount__countentAccount {
+  position: relative;
+  width: 1100px;
+  height: 650px;
+  background-color: #fff;
+  border-radius: 5px;
+  transform: scale(0.1);
+}
+.active-content {
+  transition: 0.3s;
+  transform: scale(1);
+}
+.contentAccount__title {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  font-size: 40px;
+  font-weight: 600;
+}
+.contentAccount__imgClose {
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 35px;
+}
+.contentAccount__imgClose:hover {
+  transform: scale(1.05);
+}
+.contentAccount__line {
+  position: absolute;
+  top: 65px;
+  width: 100%;
+  height: 1px;
+  background-color: black;
+}
+.contentAccount__btnExit,
+.contentAccount__btnAdd {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  width: 150px;
+  height: 55px;
+  background-color: #de1b41;
+  border-radius: 5px;
+
+  font-size: 19px;
+  color: #fff;
+  display: none;
+}
+.contentAccount__btnExit:hover,
+.contentAccount__btnManage:hover,
+.contentAccount__btnAdd:hover {
+  transition: 0.3s;
+  background-color: #fff;
+  border: 1px solid #de1b41;
+  color: #de1b41;
+}
+.contentAccount__btnManage {
+  position: absolute;
+  bottom: 10px;
+  right: 200px;
+  width: 165px;
+  height: 55px;
+  background-color: #de1b41;
+  border-radius: 5px;
+
+  font-size: 19px;
+  color: #fff;
+  display: none;
+}
+
+.active-account-btn {
+  display: block;
+}
+.contentAccount__yourOrder {
+  position: absolute;
+  top: 67px;
+  width: 100%;
+  height: 79%;
+  overflow-y: scroll;
+}
+.yourOrder__orderBox {
+  border-bottom: 1px solid rgb(83, 83, 83);
+  width: 100%;
+  height: 125px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.order__title {
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 30px;
+  height: 125px;
+  color: #fff;
+  background-color: #e88a8a;
+  border-radius: 5px;
+}
+.order__total {
+  margin-right: 30px;
+}
+.yourOrder__order {
+  padding: 0 20px 0 20px;
+  margin-top: 20px;
+  height: 125px;
+  overflow: hidden;
+}
+.yourOrder__order:hover .order__title {
+  transition: 0.3s;
+  color: #de1b41;
+}
+.yourOrder__order:hover {
+  transition: 0.3s;
+  transform: scale(0.97);
+}
+.order__arrow {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  width: 32px;
+}
+.orderBox__img {
+  margin-left: 5px;
+  width: 80px;
+}
+.orderBox__title {
+  position: absolute;
+  left: 200px;
+  font-size: 30px;
+}
+.orderBox__price {
+  cursor: pointer;
+  position: absolute;
+  right: 50px;
+  font-size: 30px;
+}
+.orderBox__count {
+  cursor: pointer;
+  position: absolute;
+  right: 200px;
+  font-size: 30px;
+}
+.yourOrder__img {
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  left: 25px;
+  width: 43px;
+  transform: rotate(-90deg);
+  display: none;
+}
+
+.active-order-arrow {
+  display: block;
+}
+.order__trash {
+  cursor: pointer;
+  margin-right: 25px;
+}
