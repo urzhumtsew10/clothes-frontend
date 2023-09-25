@@ -796,6 +796,9 @@
     left: 110px;
     font-size: 5.12vw;
   }
+  .yourOrder__img {
+    bottom: 65px;
+  }
 }
 @media (max-width: 350px) {
   .orderBox__title {

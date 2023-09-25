@@ -15,7 +15,7 @@ const calculateSumPrice = () => {
 };
 
 const sendNewOrder = async (data) => {
-  const answer = await fetch(`http://localhost:3030/new-order`, {
+  const answer = await fetch(`https://clothes-api-eta.vercel.app/new-order`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
