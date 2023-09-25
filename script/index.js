@@ -53,18 +53,21 @@ listItems.forEach((item) => {
 // user office
 
 const deleteUserOrder = async (orderId) => {
-  const answer = await fetch(`http://localhost:3030/delete-order`, {
-    method: "POST",
-    body: JSON.stringify({ orderId: orderId }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const answer = await fetch(
+    `https://clothes-api-eta.vercel.app/delete-order`,
+    {
+      method: "POST",
+      body: JSON.stringify({ orderId: orderId }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   return await answer.json();
 };
 
 const addNewProduct = async (data) => {
-  const answer = await fetch(`http://localhost:3030/add-product`, {
+  const answer = await fetch(`https://clothes-api-eta.vercel.app/add-product`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -75,29 +78,35 @@ const addNewProduct = async (data) => {
 };
 
 const setProduct = async (data) => {
-  const answer = await fetch(`http://localhost:3030/redact-product`, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const answer = await fetch(
+    `https://clothes-api-eta.vercel.app/redact-product`,
+    {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   return await answer.json();
 };
 
 const deleteProduct = async (productId) => {
-  const answer = await fetch(`http://localhost:3030/delete-product`, {
-    method: "POST",
-    body: JSON.stringify({ productId: productId }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const answer = await fetch(
+    `https://clothes-api-eta.vercel.app/delete-product`,
+    {
+      method: "POST",
+      body: JSON.stringify({ productId: productId }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   return await answer.json();
 };
 
 const findUserOrders = async (user) => {
-  const answer = await fetch(`http://localhost:3030/user-orders`, {
+  const answer = await fetch(`https://clothes-api-eta.vercel.app/user-orders`, {
     method: "POST",
     body: JSON.stringify({ userName: user }),
     headers: {

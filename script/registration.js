@@ -14,7 +14,7 @@ const checkLabel = (labelId) => {
 
 const checkUserData = async (data, url) => {
   loaderReg.classList.add("active-loader");
-  const answer = await fetch(`http://localhost:3030/${url}`, {
+  const answer = await fetch(`https://clothes-api-eta.vercel.app/${url}`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -25,7 +25,7 @@ const checkUserData = async (data, url) => {
 };
 
 const addNewUser = async (data) => {
-  const answer = await fetch(`http://localhost:3030/add-user`, {
+  const answer = await fetch(`https://clothes-api-eta.vercel.app/add-user`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
