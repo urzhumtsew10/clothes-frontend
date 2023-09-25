@@ -182,10 +182,10 @@ const renderOrders = (userName) => {
 };
 
 const renderProducts = (userName, id) => {
+  ordersBlock.innerHTML = "";
   findUserOrders(userName).then((orders) => {
     const currentOrder = orders.filter((order) => order._id === id)[0];
     currentOrder.products.forEach((product) => {
-      ordersBlock.innerHTML = "";
       ordersBlock.insertAdjacentHTML(
         "beforeend",
         ` <div class="yourOrder__orderBox">
