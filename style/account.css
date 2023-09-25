@@ -712,7 +712,7 @@
   .contentAccount__btnManage {
     font-size: 15px;
     right: 0;
-    left: 10px;
+    left: 75px;
     width: 113px;
   }
   .contentAccount__line {
@@ -795,9 +795,6 @@
   .orderBox__title {
     left: 110px;
     font-size: 5.12vw;
-  }
-  .yourOrder__img {
-    bottom: 65px;
   }
 }
 @media (max-width: 350px) {
