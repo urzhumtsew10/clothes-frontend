@@ -1,3 +1,5 @@
+const loaderReg = document.querySelector(".loader__registration");
+
 const checkLabel = (labelId) => {
   const label = document.querySelector(`#${labelId}`);
   label.addEventListener("change", (e) => {
@@ -11,6 +13,7 @@ const checkLabel = (labelId) => {
 };
 
 const checkUserData = async (data, url) => {
+  loaderReg.classList.add("active-loader");
   const answer = await fetch(`http://localhost:3030/${url}`, {
     method: "POST",
     body: JSON.stringify(data),
@@ -105,12 +108,14 @@ windowRegistration.addEventListener("click", (e) => {
   }
   if (e.target.classList.contains("actions__logIn")) {
     if (formLogIn.classList.contains("active-form")) {
+      loaderReg.classList.add("active-loader");
       e.preventDefault();
       const formData = new FormData(formLogIn);
       const entries = formData.entries();
       const data = Object.fromEntries(entries);
 
       checkUserData(data, "find-user").then((res) => {
+        loaderReg.classList.remove("active-loader");
         if (!res.isFound) {
           labelNameLog.classList.add("error");
           labelPasswordLog.classList.add("error");
@@ -195,6 +200,7 @@ windowRegistration.addEventListener("click", (e) => {
 
       if (isValidation) {
         checkUserData(userData, "create-user").then((data) => {
+          loaderReg.classList.remove("active-loader");
           if (!data.name) {
             labelNameSign.classList.add("error");
             nameErrorSign.classList.add("active-error");

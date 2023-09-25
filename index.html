@@ -34,13 +34,20 @@
     </header>
     <div class="windowAccount">
       <div class="windowAccount__countentAccount">
+        <div class="loader"></div>
         <h2 class="contentAccount__title">Your Account</h2>
         <div class="contentAccount__line"></div>
         <img class="contentAccount__imgClose" src="./img/icon-close.svg" />
+        <button class="contentAccount__btnExit active-account-btn">
+          Leave Account
+        </button>
+        <img class="yourOrder__img" src="./img/arrow.png" />
+        <div class="contentAccount__yourOrder"></div>
       </div>
     </div>
     <div class="windowRegistration">
       <div class="windowRegistration__contentRegistr">
+        <div class="loader__registration"></div>
         <h2 class="contentRegistr__title">Registration</h2>
         <div class="contentRegistr__line"></div>
         <img class="contentRegistr__imgClose" src="./img/icon-close.svg" />
@@ -461,8 +468,8 @@
         </div>
       </div>
     </footer>
-
     <script src="./script/index.js"></script>
+    <script src="./script/service.js"></script>
     <script src="./script/cart.js"></script>
     <script src="./script/registration.js"></script>
   </body>

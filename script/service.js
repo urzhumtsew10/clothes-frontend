@@ -166,10 +166,12 @@ filterBlock.addEventListener("click", (e) => {
       blockProducts.innerHTML = "";
 
       products.forEach((product) => {
+        const imgSource =
+          product.img.length > 50 ? product.img : `./img/${product.img}`;
         blockProducts.insertAdjacentHTML(
           "beforeend",
           `<div class="product__card card">
-             <img id="${product._id}" class="card__img card" src="./img/${product.img}" alt="tshirt" />
+             <img id="${product._id}" class="card__img card" src="${imgSource}" alt="tshirt" />
              <div class="card__params">
                <h2 id="${product._id}" class="params__title card">${product.category} ${product.brand}</h2>
                <div class="params__cost flex">
@@ -209,7 +211,12 @@ blockProducts.addEventListener("click", (e) => {
 
       contentPage.style.display = "none";
 
-      aboutProductImg.src = `./img/${currentCard.img}`;
+      const imgSource =
+        currentCard.img.length > 50
+          ? currentCard.img
+          : `./img/${currentCard.img}`;
+
+      aboutProductImg.src = imgSource;
       aboutProductTitle.innerText = `${currentCard.for}'s ${currentCard.category}`;
       aboutProductBrand.innerText = `${currentCard.brand}`;
       aboutProductColor.innerText = `${currentCard.color}`;
