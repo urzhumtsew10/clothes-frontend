@@ -200,6 +200,7 @@ const aboutProductBrand = document.querySelector(".brand");
 const aboutProductColor = document.querySelector(".color");
 const aboutProductSize = document.querySelector(".size");
 const aboutProductPrice = document.querySelector(".price");
+const aboutProductCounter = document.querySelector(".counterProduct__total");
 
 blockProducts.addEventListener("click", (e) => {
   if (e.target.nodeName === "IMG" || e.target.nodeName === "H2") {
@@ -217,6 +218,7 @@ blockProducts.addEventListener("click", (e) => {
           : `./img/${currentCard.img}`;
 
       aboutProductImg.src = imgSource;
+      aboutProductImg.setAttribute("id", `${e.target.id}`);
       aboutProductTitle.innerText = `${currentCard.for}'s ${currentCard.category}`;
       aboutProductBrand.innerText = `${currentCard.brand}`;
       aboutProductColor.innerText = `${currentCard.color}`;
@@ -238,6 +240,45 @@ blockProducts.addEventListener("click", (e) => {
         });
       });
     });
+  }
+});
+
+aboutProductBlock.addEventListener("click", (e) => {
+  const counter = aboutProductCounter.innerText;
+  if (e.target.classList.contains("counterProduct__remove")) {
+    if (+counter >= 2) {
+      aboutProductCounter.innerText = +counter - 1;
+    }
+  }
+  if (e.target.classList.contains("counterProduct__add")) {
+    if (+counter <= 98) {
+      aboutProductCounter.innerText = +counter + 1;
+    }
+  }
+  if (e.target.classList.contains("actions__buy")) {
+    const cartProducts = JSON.parse(localStorage.getItem("cartProducts"));
+    const isFinded = cartProducts.filter(
+      (product) => product._id === aboutProductImg.id
+    )[0];
+
+    if (Boolean(isFinded)) {
+      isFinded.count = +isFinded.count + +counter;
+      localStorage.setItem("cartProducts", JSON.stringify([...cartProducts]));
+    } else {
+      getProducts().then((products) => {
+        const currentProduct = products.filter(
+          (product) => product._id === aboutProductImg.id
+        )[0];
+        currentProduct.count = +`${counter}`;
+        localStorage.setItem(
+          "cartProducts",
+          JSON.stringify([...cartProducts, { ...currentProduct }])
+        );
+        calculateQuantityProducts();
+      });
+    }
+    calculateQuantityProducts();
+    aboutProductCounter.innerText = 1;
   }
 });
 
