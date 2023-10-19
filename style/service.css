@@ -132,7 +132,7 @@ li:nth-of-type(2) .list__nav-item {
   color: #fff;
 }
 .seasonalClothing {
-  margin-top: 5vw;
+  margin-top: 100px;
 }
 .seasonalClothing__container {
   display: grid;

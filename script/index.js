@@ -50,7 +50,7 @@ listItems.forEach((item) => {
   });
 });
 
-// user office
+// user account
 
 const deleteUserOrder = async (orderId) => {
   const answer = await fetch(
