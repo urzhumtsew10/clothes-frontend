@@ -29,10 +29,11 @@ const getProducts = async () => {
 };
 
 getProducts().then((products) => {
-  for (let i = 0; i < 30; i++) {
-    blockProducts.insertAdjacentHTML(
-      "beforeend",
-      `<div class="product__card card">
+  if (blockProducts !== null) {
+    for (let i = 0; i < 30; i++) {
+      blockProducts.insertAdjacentHTML(
+        "beforeend",
+        `<div class="product__card card">
              <img id="${products[i]._id}" class="card__img card" src="./img/${products[i].img}"/>
              <div class="card__params">
                <h2 id="${products[i]._id}" class="params__title card">${products[i].category} ${products[i].brand}</h2>
@@ -42,7 +43,8 @@ getProducts().then((products) => {
                </div>
              </div>
         </div>`
-    );
+      );
+    }
   }
 });
 
@@ -115,62 +117,63 @@ filterSeasonalBtn.forEach((elem) => {
   });
 });
 
-filterBlock.addEventListener("click", (e) => {
-  const filter = {
-    category: "All",
-    brand: [],
-    size: [],
-    for: [],
-  };
+if (filterBlock !== null) {
+  filterBlock.addEventListener("click", (e) => {
+    const filter = {
+      category: "All",
+      brand: [],
+      size: [],
+      for: [],
+    };
 
-  if (e.target.nodeName === "BUTTON") {
-    filterCategoryBtn.forEach((btn) => {
-      btn.classList.remove("active-category");
-    });
-    e.target.classList.add("active-category");
-  }
-  const loadingBlock = document.querySelectorAll(".loadingBlock");
-  if (e.target.nodeName === "INPUT" || e.target.nodeName === "BUTTON") {
-    loadingBlock.forEach((loading) => {
-      loading.classList.add("active-loading");
-    });
-    filterCategoryBtn.forEach((btn) => {
-      if (btn.classList.contains("active-category")) {
-        filter.category = btn.innerText;
-      }
-    });
-
-    inputBrand.forEach((input) => {
-      if (input.checked) {
-        filter.brand.push(input.value);
-      }
-    });
-
-    inputFor.forEach((input) => {
-      if (input.checked) {
-        filter.for.push(input.value);
-      }
-    });
-
-    inputSize.forEach((input) => {
-      if (input.checked) {
-        filter.size.push(input.value);
-      }
-    });
-
-    sendFilterData(filter, "sort").then((products) => {
+    if (e.target.nodeName === "BUTTON") {
+      filterCategoryBtn.forEach((btn) => {
+        btn.classList.remove("active-category");
+      });
+      e.target.classList.add("active-category");
+    }
+    const loadingBlock = document.querySelectorAll(".loadingBlock");
+    if (e.target.nodeName === "INPUT" || e.target.nodeName === "BUTTON") {
       loadingBlock.forEach((loading) => {
-        loading.classList.remove("active-loading");
+        loading.classList.add("active-loading");
+      });
+      filterCategoryBtn.forEach((btn) => {
+        if (btn.classList.contains("active-category")) {
+          filter.category = btn.innerText;
+        }
       });
 
-      blockProducts.innerHTML = "";
+      inputBrand.forEach((input) => {
+        if (input.checked) {
+          filter.brand.push(input.value);
+        }
+      });
 
-      products.forEach((product) => {
-        const imgSource =
-          product.img.length > 50 ? product.img : `./img/${product.img}`;
-        blockProducts.insertAdjacentHTML(
-          "beforeend",
-          `<div class="product__card card">
+      inputFor.forEach((input) => {
+        if (input.checked) {
+          filter.for.push(input.value);
+        }
+      });
+
+      inputSize.forEach((input) => {
+        if (input.checked) {
+          filter.size.push(input.value);
+        }
+      });
+
+      sendFilterData(filter, "sort").then((products) => {
+        loadingBlock.forEach((loading) => {
+          loading.classList.remove("active-loading");
+        });
+
+        blockProducts.innerHTML = "";
+
+        products.forEach((product) => {
+          const imgSource =
+            product.img.length > 50 ? product.img : `./img/${product.img}`;
+          blockProducts.insertAdjacentHTML(
+            "beforeend",
+            `<div class="product__card card">
              <img id="${product._id}" class="card__img card" src="${imgSource}" alt="tshirt" />
              <div class="card__params">
                <h2 id="${product._id}" class="params__title card">${product.category} ${product.brand}</h2>
@@ -180,11 +183,12 @@ filterBlock.addEventListener("click", (e) => {
                </div>
              </div>
         </div>`
-        );
+          );
+        });
       });
-    });
-  }
-});
+    }
+  });
+}
 
 // view-product
 
@@ -202,85 +206,89 @@ const aboutProductSize = document.querySelector(".size");
 const aboutProductPrice = document.querySelector(".price");
 const aboutProductCounter = document.querySelector(".counterProduct__total");
 
-blockProducts.addEventListener("click", (e) => {
-  if (e.target.nodeName === "IMG" || e.target.nodeName === "H2") {
-    const productId = e.target.id;
-    getProducts().then((products) => {
-      const currentCard = products.filter(
-        (product) => product._id === productId
-      )[0];
+if (blockProducts !== null) {
+  blockProducts.addEventListener("click", (e) => {
+    if (e.target.nodeName === "IMG" || e.target.nodeName === "H2") {
+      const productId = e.target.id;
+      getProducts().then((products) => {
+        const currentCard = products.filter(
+          (product) => product._id === productId
+        )[0];
 
-      contentPage.style.display = "none";
+        contentPage.style.display = "none";
 
-      const imgSource =
-        currentCard.img.length > 50
-          ? currentCard.img
-          : `./img/${currentCard.img}`;
+        const imgSource =
+          currentCard.img.length > 50
+            ? currentCard.img
+            : `./img/${currentCard.img}`;
 
-      aboutProductImg.src = imgSource;
-      aboutProductImg.setAttribute("id", `${e.target.id}`);
-      aboutProductTitle.innerText = `${currentCard.for}'s ${currentCard.category}`;
-      aboutProductBrand.innerText = `${currentCard.brand}`;
-      aboutProductColor.innerText = `${currentCard.color}`;
-      aboutProductSize.innerText = `${currentCard.size}`;
-      aboutProductPrice.innerText = `${currentCard.price}`;
+        aboutProductImg.src = imgSource;
+        aboutProductImg.setAttribute("id", `${e.target.id}`);
+        aboutProductTitle.innerText = `${currentCard.for}'s ${currentCard.category}`;
+        aboutProductBrand.innerText = `${currentCard.brand}`;
+        aboutProductColor.innerText = `${currentCard.color}`;
+        aboutProductSize.innerText = `${currentCard.size}`;
+        aboutProductPrice.innerText = `${currentCard.price}`;
 
-      aboutProductBlock.style.display = "flex";
-
-      window.scrollTo({
-        top: 0,
-      });
-
-      arrowBack.addEventListener("click", () => {
-        aboutProductBlock.style.display = "none";
-        contentPage.style.display = "block";
+        aboutProductBlock.style.display = "flex";
 
         window.scrollTo({
-          top: e.target.getBoundingClientRect().top + pageYOffset - 50,
+          top: 0,
+        });
+
+        arrowBack.addEventListener("click", () => {
+          aboutProductBlock.style.display = "none";
+          contentPage.style.display = "block";
+
+          window.scrollTo({
+            top: e.target.getBoundingClientRect().top + pageYOffset - 50,
+          });
         });
       });
-    });
-  }
-});
+    }
+  });
+}
 
-aboutProductBlock.addEventListener("click", (e) => {
-  const counter = aboutProductCounter.innerText;
-  if (e.target.classList.contains("counterProduct__remove")) {
-    if (+counter >= 2) {
-      aboutProductCounter.innerText = +counter - 1;
+if (aboutProductBlock !== null) {
+  aboutProductBlock.addEventListener("click", (e) => {
+    const counter = aboutProductCounter.innerText;
+    if (e.target.classList.contains("counterProduct__remove")) {
+      if (+counter >= 2) {
+        aboutProductCounter.innerText = +counter - 1;
+      }
     }
-  }
-  if (e.target.classList.contains("counterProduct__add")) {
-    if (+counter <= 98) {
-      aboutProductCounter.innerText = +counter + 1;
+    if (e.target.classList.contains("counterProduct__add")) {
+      if (+counter <= 98) {
+        aboutProductCounter.innerText = +counter + 1;
+      }
     }
-  }
-  if (e.target.classList.contains("actions__buy")) {
-    const cartProducts = JSON.parse(localStorage.getItem("cartProducts"));
-    const isFinded = cartProducts.filter(
-      (product) => product._id === aboutProductImg.id
-    )[0];
+    if (e.target.classList.contains("actions__buy")) {
+      const cartProducts = JSON.parse(localStorage.getItem("cartProducts"));
+      const isFinded = cartProducts.filter(
+        (product) => product._id === aboutProductImg.id
+      )[0];
 
-    if (Boolean(isFinded)) {
-      isFinded.count = +isFinded.count + +counter;
-      localStorage.setItem("cartProducts", JSON.stringify([...cartProducts]));
-    } else {
-      getProducts().then((products) => {
-        const currentProduct = products.filter(
-          (product) => product._id === aboutProductImg.id
-        )[0];
-        currentProduct.count = +`${counter}`;
-        localStorage.setItem(
-          "cartProducts",
-          JSON.stringify([...cartProducts, { ...currentProduct }])
-        );
-        calculateQuantityProducts();
-      });
+      if (Boolean(isFinded)) {
+        isFinded.count = +isFinded.count + +counter;
+        localStorage.setItem("cartProducts", JSON.stringify([...cartProducts]));
+      } else {
+        getProducts().then((products) => {
+          const currentProduct = products.filter(
+            (product) => product._id === aboutProductImg.id
+          )[0];
+          currentProduct.count = +`${counter}`;
+          localStorage.setItem(
+            "cartProducts",
+            JSON.stringify([...cartProducts, { ...currentProduct }])
+          );
+          calculateQuantityProducts();
+        });
+      }
+      calculateQuantityProducts();
+      aboutProductCounter.innerText = 1;
     }
-    calculateQuantityProducts();
-    aboutProductCounter.innerText = 1;
-  }
-});
+  });
+}
 
 // adeptive filter
 
@@ -315,16 +323,18 @@ const addToStorageCart = (value) => {
   localStorage.setItem("cartProducts", JSON.stringify(productsArray));
 };
 
-blockProducts.addEventListener("click", (e) => {
-  if (e.target.classList.contains("cost__btn")) {
-    const productId = e.target.id;
+if (blockProducts !== null) {
+  blockProducts.addEventListener("click", (e) => {
+    if (e.target.classList.contains("cost__btn")) {
+      const productId = e.target.id;
 
-    getProducts().then((products) => {
-      const currentProduct = products.filter(
-        (product) => product._id === productId
-      )[0];
-      addToStorageCart(currentProduct);
-      calculateQuantityProducts();
-    });
-  }
-});
+      getProducts().then((products) => {
+        const currentProduct = products.filter(
+          (product) => product._id === productId
+        )[0];
+        addToStorageCart(currentProduct);
+        calculateQuantityProducts();
+      });
+    }
+  });
+}

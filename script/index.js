@@ -20,12 +20,16 @@ checkToken();
 
 const calculateQuantityProducts = () => {
   const products = JSON.parse(localStorage.getItem("cartProducts"));
-  const quantityProducts = products.reduce((acc, product) => {
-    acc += product.count;
-    return acc;
-  }, 0);
   const cartTotal = document.querySelector(".circle__total");
-  cartTotal.innerText = quantityProducts;
+  if (products) {
+    const quantityProducts = products.reduce((acc, product) => {
+      acc += product.count;
+      return acc;
+    }, 0);
+    cartTotal.innerText = quantityProducts;
+  } else {
+    cartTotal.innerText = 0;
+  }
 };
 
 calculateQuantityProducts();
